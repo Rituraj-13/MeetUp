@@ -1,10 +1,13 @@
 
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher(["/", "/(api|trpc)(.*)"]);
+const isProtectedRoute = createRouteMatcher([
+  "/",
+  "/(api(?!/uploadthing)|trpc)(.*)",
+]);
 
 export default clerkMiddleware((auth, req) => {
-  if (!req.url.startsWith('/api/uploadthing') && isProtectedRoute(req)) {
+  if (isProtectedRoute(req)) {
     auth().protect();
   }
 });
@@ -13,9 +16,32 @@ export const config = {
   matcher: [
     "/((?!.*\\..*|_next).*)", // Don't run middleware on static files
     "/", // Run middleware on index page
-    "/(api|trpc)(.*)",
+    "/(api(?!/uploadthing)|trpc)(.*)",
   ], // Run middleware on API routes
 };
+
+
+// *------------------------------------------------------------------------------
+
+// const isProtectedRoute = createRouteMatcher(["/", "/(api|trpc)(.*)"]);
+
+// export default clerkMiddleware((auth, req) => {
+//   // if (!req.url.startsWith('/api/uploadthing') && isProtectedRoute(req)) {
+//   //   auth().protect();
+//   // }
+
+//   if (isProtectedRoute(req) && !req.url.startsWith('/api/uploadthing')) {
+//     auth().protect();
+//   }
+// });
+
+// export const config = {
+//   matcher: [
+//     "/((?!.*\\..*|_next).*)", // Don't run middleware on static files
+//     "/", // Run middleware on index page
+//     "/(api|trpc)(.*)",
+//   ], // Run middleware on API routes
+// };
 
 
 
