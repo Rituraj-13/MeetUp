@@ -10,7 +10,7 @@ export async function PATCH(
 ) {
     try{
         const profile  = await currentProfile();
-        const { name, imageUrl } = await req.json();
+        
 
         if(!profile){
             return new NextResponse("Unauthorised", { status: 401});
