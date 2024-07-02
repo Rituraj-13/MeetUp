@@ -57,10 +57,6 @@ export const MembersModal = () => {
     const isModalOpen = isOpen && type === "members";
     const { server } = data as { server: ServerWithMembersWithProfiles };
 
-    // Debugging ============================================
-    console.log('Server data:', server); // Debugging step
-
-    // ============================================
     const onKick = async (memberId: string) => {
         try {
             setLoadingId(memberId);
