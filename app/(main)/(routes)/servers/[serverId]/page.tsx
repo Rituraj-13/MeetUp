@@ -20,7 +20,7 @@ const ServerIdPage = async ({
     const profile = await currentProfile();
 
     if(!profile){
-        return auth();
+        return auth().redirectToSignIn();
         // return redirectToSignIn();
     }
     const server = await db.server.findUnique({
