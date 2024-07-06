@@ -63,6 +63,7 @@ model Member{
   server Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
   messages Message[]
+
   directMessages DirectMessage[]
 
   conversationsInitiated Conversation[] @relation("MemberOne")
