@@ -25,7 +25,7 @@ export const DeleteChannelModal = () => {
     const isModalOpen = isOpen && type === "deleteChannel";
     const { server, channel } = data;
 
-    
+
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -42,8 +42,8 @@ export const DeleteChannelModal = () => {
             await axios.delete(url);
 
             onClose();
-            router.refresh(); 
             router.push(`/servers/${server?.id}`);
+            router.refresh();
 
         } catch (error) {
             console.log(error);
@@ -61,7 +61,7 @@ export const DeleteChannelModal = () => {
                         Delete Channel
                     </DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        Are you sure you want to delete this? <br/>
+                        Are you sure you want to delete this? <br />
                         <span className="text-indigo-500 font-semibold">#{channel?.name}</span> will be permanently deleted!!
                     </DialogDescription>
                 </DialogHeader>
